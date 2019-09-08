@@ -1,6 +1,6 @@
 public class TicTacToeBoard {
 
-    private char[][] board = new char[3][3];
+    private char[][] board;
     private final int ROWS = 3;
     private final int COLS = 3;
     private boolean isGameOver = false;
@@ -9,6 +9,7 @@ public class TicTacToeBoard {
      * Constructor which initializes the board.
      */
     public TicTacToeBoard(){
+        this.board = new char[ROWS][COLS];
         for(int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
                 board[i][j] = '-';
@@ -28,6 +29,11 @@ public class TicTacToeBoard {
         }
     }
 
+    public int firstTurn(){
+        int player = (int) Math.floor(Math.random() * 2);
+        return player;
+    }
+
     /**
      * Check either rows, cols, or diagonals were filled with same character or not.
      * @return true if same character on one of them (rows, cols, diagonals), otherwise false.
@@ -41,7 +47,7 @@ public class TicTacToeBoard {
 
     /**
      * Check if same character (X or O) on the same row.
-     * @return true if same character(X or O) on the row.
+     * @return true if same character(X or O) on the row. Otherwise, false
      */
     private boolean checkRows(){
         for(int i = 0; i < ROWS; i++){
@@ -54,7 +60,7 @@ public class TicTacToeBoard {
 
     /**
      * Check if same character (X or O) on the same column.
-     * @return true if same character(X or O) on the column.
+     * @return true if same character(X or O) on the column. Otherwise, false
      */
     private boolean checkCols(){
         for(int i = 0; i < COLS; i++){
@@ -67,7 +73,7 @@ public class TicTacToeBoard {
 
     /**
      * Check if same character (X or O) on the same diagonal.
-     * @return true if same character(X or O) on the diagonal.
+     * @return true if same character(X or O) on the diagonal. Otherwise, false
      */
     private boolean checkDiagonals(){
         if(board[0][0] == board[1][1] &&
