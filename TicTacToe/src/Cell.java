@@ -3,12 +3,8 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class Cell extends JPanel {
-    private int x;
-    private int y;
     private char token;
-    public Cell(int x, int y, char token){
-        this.x = x;
-        this.y = y;
+    public Cell(char token){
         this.token = token;
         setBorder(new LineBorder(Color.black, 1));
     }
@@ -31,7 +27,7 @@ public class Cell extends JPanel {
 
         if (token == 'X')
         {
-            g.drawLine(0, 0, getWidth() - 10, getHeight() - 10);
+            g.drawLine(10, 10, getWidth() - 10, getHeight() - 10);
             g.drawLine(getWidth() - 10, 10, 10, getHeight() - 10);
         }
 
