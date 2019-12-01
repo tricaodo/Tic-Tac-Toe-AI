@@ -34,73 +34,68 @@ public class TicTacToe extends JFrame implements MouseListener {
 
         if (!isGameOver) {
             // Check game status
-            if (isWon(token)) {
-                isGameOver = true;
-            } else if (isFull()) {
-                isGameOver = true;
-            } else {
+            if (cells[row][col].getToken() == ' ') {
                 cells[row][col].setToken(token);
+                isGameOver = isWon();
                 token = (token == 'X') ? 'O' : 'X';
                 computerTurn();
-                token = (token == 'X') ? 'O' : 'X';
+                isGameOver = isWon();
             }
-
         }
 
     }
 
-    public boolean isFull() {
-        for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++)
-                if (cells[i][j].getToken() == ' ')
-                    return false;
-        return true;
-    }
-
-    public boolean isWon(char token) {
-        // check rows
-        for (int i = 0; i < 3; i++)
-            if ((cells[i][0].getToken() == token)
-                    && (cells[i][1].getToken() == token)
-                    && (cells[i][2].getToken() == token)) {
+    private boolean checkRows(){
+        for(int i = 0; i < cells.length; i++){
+            if(cells[i][0].getToken() == cells[i][1].getToken()
+                    && cells[i][1].getToken() == cells[i][2].getToken()
+                    && cells[i][0].getToken() != ' '){
                 return true;
             }
-
-        // check columns
-        for (int j = 0; j < 3; j++)
-            if ((cells[0][j].getToken() == token)
-                    && (cells[1][j].getToken() == token)
-                    && (cells[2][j].getToken() == token)) {
-                return true;
-            }
-        // check diagonal
-        if ((cells[0][0].getToken() == token)
-                && (cells[1][1].getToken() == token)
-                && (cells[2][2].getToken() == token)) {
-            return true;
         }
-
-        if ((cells[0][2].getToken() == token)
-                && (cells[1][1].getToken() == token)
-                && (cells[2][0].getToken() == token)) {
-            return true;
-        }
-
         return false;
     }
 
-    private void computerTurn(){
-        while(!isGameOver){
-            int row = (int)(Math.random() * 3);
-            int col = (int)(Math.random() * 3);
-            if(cells[row][col].getToken() == ' '){
-                cells[row][col].setToken(token);
-                if(isGameOver){
-                    System.out.println("Computer won!!!");
-                }
+    private boolean checkCols(){
+        for(int i = 0; i < cells.length; i++){
+            if(cells[0][i].getToken() == cells[1][i].getToken()
+                    && cells[1][i].getToken() == cells[2][i].getToken()
+                    && cells[0][i].getToken() != ' '){
+                return true;
+            }
+        }
+        return false;
+    }
 
+    private boolean checkDiagonals(){
+        if(cells[0][0].getToken() == cells[1][1].getToken() &&
+                cells[1][1].getToken() == cells[2][2].getToken() &&
+                cells[0][0].getToken() != ' ' ){
+            return true;
+        }
+        if(cells[2][0].getToken() == cells[1][1].getToken() &&
+                cells[1][1].getToken() == cells[0][2].getToken() &&
+                cells[2][0].getToken() != ' ' ){
+            return true;
+        }
+        return false;
+    }
+
+
+    public boolean isWon() {
+        return checkCols() || checkRows() || checkDiagonals();
+    }
+
+    private void computerTurn() {
+        while (!isGameOver) {
+            int row = (int) (Math.random() * 3);
+            int col = (int) (Math.random() * 3);
+            if (cells[row][col].getToken() == ' ') {
+                cells[row][col].setToken(token);
+                token = (token == 'X') ? 'O' : 'X';
                 break;
             }
+
         }
     }
 
