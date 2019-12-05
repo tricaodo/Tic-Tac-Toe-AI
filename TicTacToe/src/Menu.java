@@ -23,48 +23,23 @@ public class Menu extends JFrame {
         tictactoeTitle.setFont(new Font("Verdana", 1, 40));
 
         // welcome title
-        gridConstraints.weightx = 1;
-        gridConstraints.weighty = 0.3;
-        gridConstraints.gridx = 0;
-        gridConstraints.gridy = 0;
-        gridConstraints.fill = GridBagConstraints.NONE;
-        gridConstraints.anchor = GridBagConstraints.CENTER;
+        gridBagConstraints(1, 0.3, 0, 0, gridConstraints);
         menuPanel.add(welcomeTitle, gridConstraints);
 
         // titactoe title
-        gridConstraints.weightx = 1;
-        gridConstraints.weighty = 0.1;
-        gridConstraints.gridx = 0;
-        gridConstraints.gridy = 1;
-        gridConstraints.fill = GridBagConstraints.NONE;
-        gridConstraints.anchor = GridBagConstraints.CENTER;
+        gridBagConstraints(1, 0.1, 0, 1, gridConstraints);
         menuPanel.add(tictactoeTitle, gridConstraints);
 
         // start button
-        gridConstraints.weightx = 1;
-        gridConstraints.weighty = 0.1;
-        gridConstraints.gridx = 0;
-        gridConstraints.gridy = 2;
-        gridConstraints.fill = GridBagConstraints.NONE;
-        gridConstraints.anchor = GridBagConstraints.CENTER;
+        gridBagConstraints(1, 0.1, 0, 2, gridConstraints);
         menuPanel.add(startBtn, gridConstraints);
 
         // load button
-        gridConstraints.weightx = 1;
-        gridConstraints.weighty = 0.1;
-        gridConstraints.gridx = 0;
-        gridConstraints.gridy = 3;
-        gridConstraints.fill = GridBagConstraints.NONE;
-        gridConstraints.anchor = GridBagConstraints.CENTER;
+        gridBagConstraints(1, 0.1, 0, 3, gridConstraints);
         menuPanel.add(loadBtn, gridConstraints);
 
         // exit button
-        gridConstraints.weightx = 1;
-        gridConstraints.weighty = 0.1;
-        gridConstraints.gridx = 0;
-        gridConstraints.gridy = 4;
-        gridConstraints.fill = GridBagConstraints.NONE;
-        gridConstraints.anchor = GridBagConstraints.CENTER;
+        gridBagConstraints(1, 0.1, 0, 4, gridConstraints);
         menuPanel.add(exitBtn, gridConstraints);
 
 
@@ -76,7 +51,6 @@ public class Menu extends JFrame {
         pack();
         setVisible(true);
 
-
         startBtn.addActionListener(e -> {
             menuPanel.setVisible(false);
             TicTacToe ticTacToe = new TicTacToe(width, height);
@@ -86,5 +60,14 @@ public class Menu extends JFrame {
         exitBtn.addActionListener(e -> {
             System.exit(0);
         });
+    }
+
+    private void gridBagConstraints(int weightx, double weighty, int gridx, int gridy, GridBagConstraints gridBagConstraints){
+        gridBagConstraints.weightx = weightx;
+        gridBagConstraints.weighty = weighty;
+        gridBagConstraints.gridx = gridx;
+        gridBagConstraints.gridy = gridy;
+        gridBagConstraints.fill = GridBagConstraints.NONE;
+        gridBagConstraints.anchor = GridBagConstraints.CENTER;
     }
 }
