@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class TicTacToe extends JFrame implements MouseListener {
+public class TicTacToe extends JPanel implements MouseListener {
 
     private Cell[][] cells;
     private boolean isGameOver;
@@ -27,6 +27,7 @@ public class TicTacToe extends JFrame implements MouseListener {
 
         add(panel, BorderLayout.CENTER);
         addMouseListener(this);
+        setVisible(true);
     }
 
     @Override

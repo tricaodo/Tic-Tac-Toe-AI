@@ -1,27 +1,26 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class Menu extends JPanel {
+public class Menu extends JFrame {
     private JButton startBtn;
     private JButton loadBtn;
     private JButton exitBtn;
-    public Menu(int width, int height){
+
+    public Menu(int width, int height, String titleGame) {
         startBtn = new JButton("Start Game");
         loadBtn = new JButton("Load Game");
         exitBtn = new JButton("Exit Game");
 
-
-        setLayout(new GridBagLayout());
-        setPreferredSize(new Dimension(width, height));
+        JPanel menuPanel = new JPanel();
+        menuPanel.setLayout(new GridBagLayout());
+        menuPanel.setPreferredSize(new Dimension(width, height));
         GridBagConstraints gridConstraints = new GridBagConstraints();
 
         JLabel welcomeTitle = new JLabel("Welcome to");
-        welcomeTitle.setFont(new Font("Verdana",1,60));
+        welcomeTitle.setFont(new Font("Verdana", 1, 60));
 
         JLabel tictactoeTitle = new JLabel("TicTacToe Game");
-        tictactoeTitle.setFont(new Font("Verdana",1,40));
+        tictactoeTitle.setFont(new Font("Verdana", 1, 40));
 
         // welcome title
         gridConstraints.weightx = 1;
@@ -30,7 +29,7 @@ public class Menu extends JPanel {
         gridConstraints.gridy = 0;
         gridConstraints.fill = GridBagConstraints.NONE;
         gridConstraints.anchor = GridBagConstraints.CENTER;
-        add(welcomeTitle, gridConstraints);
+        menuPanel.add(welcomeTitle, gridConstraints);
 
         // titactoe title
         gridConstraints.weightx = 1;
@@ -39,7 +38,7 @@ public class Menu extends JPanel {
         gridConstraints.gridy = 1;
         gridConstraints.fill = GridBagConstraints.NONE;
         gridConstraints.anchor = GridBagConstraints.CENTER;
-        add(tictactoeTitle, gridConstraints);
+        menuPanel.add(tictactoeTitle, gridConstraints);
 
         // start button
         gridConstraints.weightx = 1;
@@ -48,7 +47,7 @@ public class Menu extends JPanel {
         gridConstraints.gridy = 2;
         gridConstraints.fill = GridBagConstraints.NONE;
         gridConstraints.anchor = GridBagConstraints.CENTER;
-        add(startBtn, gridConstraints);
+        menuPanel.add(startBtn, gridConstraints);
 
         // load button
         gridConstraints.weightx = 1;
@@ -57,7 +56,7 @@ public class Menu extends JPanel {
         gridConstraints.gridy = 3;
         gridConstraints.fill = GridBagConstraints.NONE;
         gridConstraints.anchor = GridBagConstraints.CENTER;
-        add(loadBtn, gridConstraints);
+        menuPanel.add(loadBtn, gridConstraints);
 
         // exit button
         gridConstraints.weightx = 1;
@@ -66,13 +65,26 @@ public class Menu extends JPanel {
         gridConstraints.gridy = 4;
         gridConstraints.fill = GridBagConstraints.NONE;
         gridConstraints.anchor = GridBagConstraints.CENTER;
-        add(exitBtn, gridConstraints);
+        menuPanel.add(exitBtn, gridConstraints);
 
-        startBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Hello");
-            }
+
+        setTitle(titleGame);
+        add(menuPanel);
+        setSize(WIDTH, HEIGHT);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        pack();
+        setVisible(true);
+
+
+        startBtn.addActionListener(e -> {
+            menuPanel.setVisible(false);
+            TicTacToe ticTacToe = new TicTacToe(width, height);
+            add(ticTacToe);
+        });
+
+        exitBtn.addActionListener(e -> {
+            System.exit(0);
         });
     }
 }
