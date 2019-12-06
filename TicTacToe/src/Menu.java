@@ -58,6 +58,11 @@ public class Menu extends JFrame {
         });
     }
 
+    /**
+     * Updating the panel.
+     * @param firstPanel the panel will be hidden
+     * @param secondPanel the panel will be visible
+     */
     private void updateUI(JPanel firstPanel, JPanel secondPanel) {
         firstPanel.setVisible(false);
         add(secondPanel);
@@ -65,6 +70,12 @@ public class Menu extends JFrame {
         secondPanel.setVisible(true);
     }
 
+    /**
+     *
+     * @param width
+     * @param height
+     * @return
+     */
     private JPanel menuPanel(int width, int height) {
         JPanel menuPanel = new JPanel();
         menuPanel.setLayout(new GridBagLayout());

@@ -27,12 +27,14 @@ public class Cell extends JPanel {
 
         if (token == 'X')
         {
+            g.setColor(Color.BLUE);
             g.drawLine(10, 10, getWidth() - 10, getHeight() - 10);
             g.drawLine(getWidth() - 10, 10, 10, getHeight() - 10);
         }
 
         else if (token == 'O')
         {
+            g.setColor(Color.RED);
             g.drawOval(10, 10, getWidth() - 20, getHeight() - 20);
         }
     }
