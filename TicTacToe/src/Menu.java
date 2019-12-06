@@ -121,7 +121,7 @@ public class Menu extends JFrame {
         return levelPanel;
     }
 
-    private void gridBagConstraints(int weightx, double weighty, int gridx, int gridy, GridBagConstraints gridBagConstraints) {
+    private void gridBagConstraints(double weightx, double weighty, int gridx, int gridy, GridBagConstraints gridBagConstraints) {
         gridBagConstraints.weightx = weightx;
         gridBagConstraints.weighty = weighty;
         gridBagConstraints.gridx = gridx;

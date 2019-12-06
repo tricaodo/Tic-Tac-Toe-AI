@@ -1,6 +1,6 @@
 public class Test {
-    private static int WIDTH = 420;
-    private static int HEIGHT = 420;
+    private static int WIDTH = 440;
+    private static int HEIGHT = 440;
 
     public static void main(String[] args) {
         Menu menu = new Menu(WIDTH, HEIGHT, "TicTacToe Game");

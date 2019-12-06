@@ -43,7 +43,7 @@ public class TicTacToe extends JPanel implements MouseListener {
                 cells[row][col].setToken(token);
                 isGameOver = isWon();
                 token = (token == 'X') ? 'O' : 'X';
-                computerTurn();
+                easyMode();
                 isGameOver = isWon();
             }
         }
@@ -114,7 +114,7 @@ public class TicTacToe extends JPanel implements MouseListener {
     /**
      * Computer automatically plays after the user's turn.
      */
-    private void computerTurn() {
+    private void easyMode() {
         while (!isGameOver) {
             int row = (int) (Math.random() * 3);
             int col = (int) (Math.random() * 3);
@@ -125,6 +125,10 @@ public class TicTacToe extends JPanel implements MouseListener {
             }
 
         }
+    }
+
+    private void hardMode(){
+
     }
 
     @Override
