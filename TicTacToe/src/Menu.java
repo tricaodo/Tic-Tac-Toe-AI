@@ -9,6 +9,7 @@ public class Menu extends JFrame {
     private JButton easyBtn;
     private JButton hardBtn;
     private JButton backBtn;
+    private JButton saveBtn;
 
     public Menu(int width, int height, String titleGame) {
         startBtn = new JButton("Start Game");
@@ -18,6 +19,7 @@ public class Menu extends JFrame {
         easyBtn = new JButton("Easy");
         hardBtn = new JButton("Hard");
         backBtn = new JButton("Back");
+        saveBtn = new JButton("Save");
 
         JPanel menuPanel = menuPanel(width, height);
         JPanel levelPanel = levelPanel(width, height);
@@ -50,11 +52,16 @@ public class Menu extends JFrame {
         easyBtn.addActionListener(e -> {
             levelPanel.setVisible(false);
             TicTacToe ticTacToe = new TicTacToe(width, height);
-            add(ticTacToe);
+            add(saveBtn, BorderLayout.NORTH);
+            add(ticTacToe, BorderLayout.CENTER);
         });
 
         backBtn.addActionListener(e -> {
             updateUI(levelPanel, menuPanel);
+        });
+
+        saveBtn.addActionListener(e -> {
+            System.out.println("Save");
         });
     }
 

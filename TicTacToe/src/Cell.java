@@ -9,11 +9,9 @@ public class Cell extends JPanel {
         setBorder(new LineBorder(Color.black, 1));
     }
 
-
-
     public void setToken(char token) {
         this.token = token;
-        repaint();
+        this.repaint();
     }
 
     public char getToken(){

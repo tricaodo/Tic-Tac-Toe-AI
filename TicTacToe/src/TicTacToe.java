@@ -143,6 +143,7 @@ public class TicTacToe extends JPanel implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
+        System.out.println(e.getX() + " - " + e.getY());
     }
 
     @Override
