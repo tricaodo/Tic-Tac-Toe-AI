@@ -11,10 +11,15 @@ public class Menu extends JFrame {
     private JButton backBtn;
     private JButton saveBtn;
 
+    private JLabel spaceLabel;
+
     public Menu(int width, int height, String titleGame) {
+
         startBtn = new JButton("Start Game");
         loadBtn = new JButton("Load Game");
         exitBtn = new JButton("Exit Game");
+
+        spaceLabel = new JLabel("");
 
         easyBtn = new JButton("Easy");
         hardBtn = new JButton("Hard");
@@ -89,6 +94,7 @@ public class Menu extends JFrame {
         menuPanel.setPreferredSize(new Dimension(width, height));
         GridBagConstraints gridConstraints = new GridBagConstraints();
 
+
         JLabel welcomeTitle = new JLabel("Welcome to");
         welcomeTitle.setFont(new Font("Verdana", 1, 60));
 
@@ -103,16 +109,20 @@ public class Menu extends JFrame {
         gridBagConstraints(1, 0.1, 0, 1, gridConstraints);
         menuPanel.add(tictactoeTitle, gridConstraints);
 
+        // space label
+        gridBagConstraints(1, 1, 0, 2, gridConstraints);
+        menuPanel.add(spaceLabel, gridConstraints);
+
         // start button
-        gridBagConstraints(1, 0.1, 0, 2, gridConstraints);
+        gridBagConstraints(1, 0.1, 0, 3, gridConstraints);
         menuPanel.add(startBtn, gridConstraints);
 
         // load button
-        gridBagConstraints(1, 0.1, 0, 3, gridConstraints);
+        gridBagConstraints(1, 0.1, 0, 4, gridConstraints);
         menuPanel.add(loadBtn, gridConstraints);
 
         // exit button
-        gridBagConstraints(1, 0.1, 0, 4, gridConstraints);
+        gridBagConstraints(1, 0.1, 0, 5, gridConstraints);
         menuPanel.add(exitBtn, gridConstraints);
 
         return menuPanel;
@@ -124,16 +134,20 @@ public class Menu extends JFrame {
         levelPanel.setPreferredSize(new Dimension(300, 300));
         GridBagConstraints gridConstraints = new GridBagConstraints();
 
+        // space label
+        gridBagConstraints(1, 2, 0, 0, gridConstraints);
+        levelPanel.add(spaceLabel, gridConstraints);
+
         // easy button
-        gridBagConstraints(1, 0.1, 0, 0, gridConstraints);
+        gridBagConstraints(1, 0.1, 0, 1, gridConstraints);
         levelPanel.add(easyBtn, gridConstraints);
 
         // hard button
-        gridBagConstraints(1, 0.1, 0, 1, gridConstraints);
+        gridBagConstraints(1, 0.1, 0, 2, gridConstraints);
         levelPanel.add(hardBtn, gridConstraints);
 
         // back button
-        gridBagConstraints(1, 0.1, 0, 2, gridConstraints);
+        gridBagConstraints(1, 0.1, 0, 3, gridConstraints);
         levelPanel.add(backBtn, gridConstraints);
 
         return levelPanel;
