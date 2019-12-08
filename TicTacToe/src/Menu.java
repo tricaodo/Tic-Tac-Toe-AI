@@ -9,7 +9,6 @@ public class Menu extends JFrame {
     private JButton easyBtn;
     private JButton hardBtn;
     private JButton backBtn;
-    private JButton saveBtn;
 
     private JLabel spaceLabel;
 
@@ -24,7 +23,6 @@ public class Menu extends JFrame {
         easyBtn = new JButton("Easy");
         hardBtn = new JButton("Hard");
         backBtn = new JButton("Back");
-        saveBtn = new JButton("Save");
 
         JPanel menuPanel = menuPanel(width, height);
         JPanel levelPanel = levelPanel(width, height);
@@ -56,18 +54,15 @@ public class Menu extends JFrame {
         // easy mode
         easyBtn.addActionListener(e -> {
             levelPanel.setVisible(false);
-            TicTacToe ticTacToe = new TicTacToe(width, height);
-            add(saveBtn, BorderLayout.NORTH);
-            add(ticTacToe, BorderLayout.CENTER);
+            TicTacToe ticTacToe = new TicTacToe();
+            ticTacToe.setVisible(true);
+            this.setVisible(false);
         });
 
         backBtn.addActionListener(e -> {
             updateUI(levelPanel, menuPanel);
         });
 
-        saveBtn.addActionListener(e -> {
-            System.out.println("Save");
-        });
     }
 
     /**

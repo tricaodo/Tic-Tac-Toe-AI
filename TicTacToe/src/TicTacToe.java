@@ -1,54 +1,78 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-public class TicTacToe extends JPanel implements MouseListener {
+public class TicTacToe extends JFrame {
 
-    private Cell[][] cells;
+    private JButton[][] cells;
+    private JButton saveBtn;
+    private JButton backBtn;
+
     private boolean isGameOver;
-    private char token;
+    private String token;
+
     private final int DIMENSION;
+    private final int WIDTH;
+    private final int HEIGHT;
 
-    public TicTacToe(int WIDTH, int HEIGHT) {
-        cells = new Cell[3][3];
+    public TicTacToe() {
+        backBtn = new JButton("Back");
+        saveBtn = new JButton("Save");
+        add(saveBtn, BorderLayout.NORTH);
+        add(backBtn, BorderLayout.CENTER);
+
         isGameOver = false;
-        token = 'X';
+        token = "X";
+
         DIMENSION = 140;
+        WIDTH = 440;
+        HEIGHT = 480;
+
         // create the panel for the board.
-        JPanel panel = new JPanel(new GridLayout(3, 3, 0, 0));
-        panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-
-        for (int row = 0; row < 3; row++) {
-            for (int col = 0; col < 3; col++) {
-                panel.add(cells[row][col] = new Cell(' '));
-            }
-        }
-
-        add(panel, BorderLayout.CENTER);
-        addMouseListener(this);
+        init();
+        configureFrame();
+    }
+    private void configureFrame(){
+        setSize(WIDTH, HEIGHT);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        pack();
         setVisible(true);
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
+    private void init(){
+        cells = new JButton[3][3];
+        Dimension dimension = new Dimension(DIMENSION, DIMENSION);
+        JPanel panel = new JPanel(new GridLayout(3, 3, 0, 0));
+        panel.setPreferredSize(new Dimension(440, 440));
 
-        // Calculate the coordinate of the cell.
-        int col = e.getX() / DIMENSION;
-        int row = e.getY() / DIMENSION;
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                panel.add(cells[row][col] = new JButton(""));
+                cells[row][col].setPreferredSize(dimension);
+                int finalRow = row;
+                int finalCol = col;
+                cells[row][col].addActionListener(e -> {
+                    System.out.println("Clicked");
+                    mouseClickedEvent(finalRow, finalCol);
+                });
+            }
+        }
+        add(panel, BorderLayout.SOUTH);
+    }
 
+    public void mouseClickedEvent(int row, int col) {
         if (!isGameOver) {
             // Check game status
-            if (cells[row][col].getToken() == ' ') {
-                cells[row][col].setToken(token);
+            if (cells[row][col].getText().equals("")) {
+                cells[row][col].setText(token);
                 isGameOver = isWon();
-                token = (token == 'X') ? 'O' : 'X';
+                token = (token.equals("X")) ? "O" : "X";
                 easyMode();
                 isGameOver = isWon();
             }
         }
-
     }
+
 
     /**
      * Check if same character (X or O) on the same row.
@@ -57,9 +81,9 @@ public class TicTacToe extends JPanel implements MouseListener {
      */
     private boolean checkRows() {
         for (int i = 0; i < cells.length; i++) {
-            if (cells[i][0].getToken() == cells[i][1].getToken()
-                    && cells[i][1].getToken() == cells[i][2].getToken()
-                    && cells[i][0].getToken() != ' ') {
+            if (cells[i][0].getText().equals( cells[i][1].getText())
+                    && cells[i][1].getText().equals(cells[i][2].getText())
+                    && !cells[i][0].getText().equals("")) {
                 return true;
             }
         }
@@ -73,9 +97,9 @@ public class TicTacToe extends JPanel implements MouseListener {
      */
     private boolean checkCols() {
         for (int i = 0; i < cells.length; i++) {
-            if (cells[0][i].getToken() == cells[1][i].getToken()
-                    && cells[1][i].getToken() == cells[2][i].getToken()
-                    && cells[0][i].getToken() != ' ') {
+            if (cells[0][i].getText().equals(cells[1][i].getText())
+                    && cells[1][i].getText().equals(cells[2][i].getText())
+                    && !cells[0][i].getText().equals("")) {
                 return true;
             }
         }
@@ -88,14 +112,14 @@ public class TicTacToe extends JPanel implements MouseListener {
      * @return true if same character(X or O) on the diagonal. Otherwise, false
      */
     private boolean checkDiagonals() {
-        if (cells[0][0].getToken() == cells[1][1].getToken() &&
-                cells[1][1].getToken() == cells[2][2].getToken() &&
-                cells[0][0].getToken() != ' ') {
+        if (cells[0][0].getText().equals(cells[1][1].getText()) &&
+                cells[1][1].getText().equals(cells[2][2].getText()) &&
+                !cells[0][0].getText().equals("")) {
             return true;
         }
-        if (cells[2][0].getToken() == cells[1][1].getToken() &&
-                cells[1][1].getToken() == cells[0][2].getToken() &&
-                cells[2][0].getToken() != ' ') {
+        if (cells[2][0].getText().equals(cells[1][1].getText()) &&
+                cells[1][1].getText().equals(cells[0][2].getText()) &&
+                !cells[2][0].getText().equals("")) {
             return true;
         }
         return false;
@@ -110,8 +134,6 @@ public class TicTacToe extends JPanel implements MouseListener {
         return checkCols() || checkRows() || checkDiagonals();
     }
 
-
-
     /**
      * Computer automatically plays after the user's turn.
      */
@@ -119,38 +141,17 @@ public class TicTacToe extends JPanel implements MouseListener {
         while (!isGameOver) {
             int row = (int) (Math.random() * 3);
             int col = (int) (Math.random() * 3);
-            if (cells[row][col].getToken() == ' ') {
-                cells[row][col].setToken(token);
-                token = (token == 'X') ? 'O' : 'X';
+            if (cells[row][col].getText().equals("")) {
+                cells[row][col].setText(token);
+                token = (token.equals("X")) ? "O" : "X";
                 break;
             }
 
         }
     }
 
-    private void hardMode(){
+    private void hardMode() {
 
     }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        System.out.println(e.getX() + " - " + e.getY());
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
-
 
 }
