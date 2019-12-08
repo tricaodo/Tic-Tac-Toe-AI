@@ -56,9 +56,9 @@ public class Menu extends JFrame {
         // easy mode
         easyBtn.addActionListener(e -> {
             levelPanel.setVisible(false);
-            TicTacToe ticTacToe = new TicTacToe(width, height);
+            TicTacToe ticTacToe = new TicTacToe();
             add(saveBtn, BorderLayout.NORTH);
-            add(ticTacToe, BorderLayout.CENTER);
+            add(ticTacToe, BorderLayout.LINE_START);
         });
 
         backBtn.addActionListener(e -> {
