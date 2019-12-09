@@ -13,10 +13,17 @@ public class TicTacToe extends JFrame {
     private final int DIMENSION;
     private final int WIDTH;
     private final int HEIGHT;
+    private final Menu menu;
 
     public TicTacToe() {
+        menu = new Menu();
+
         backBtn = new JButton("Back");
         saveBtn = new JButton("Save");
+
+        backButtonEvent();
+        saveButtonEvent();
+
         add(saveBtn, BorderLayout.NORTH);
         add(backBtn, BorderLayout.CENTER);
 
@@ -30,7 +37,22 @@ public class TicTacToe extends JFrame {
         // create the panel for the board.
         init();
         configureFrame();
+
     }
+
+    private void saveButtonEvent(){
+        saveBtn.addActionListener(e -> {
+
+        });
+    }
+
+    private void backButtonEvent(){
+        backBtn.addActionListener(e -> {
+            this.setVisible(false);
+            menu.setVisible(true);
+        });
+    }
+
     private void configureFrame(){
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,8 +74,8 @@ public class TicTacToe extends JFrame {
                 int finalRow = row;
                 int finalCol = col;
                 cells[row][col].addActionListener(e -> {
-                    System.out.println("Clicked");
                     mouseClickedEvent(finalRow, finalCol);
+                    cells[finalRow][finalCol].setEnabled(false);
                 });
             }
         }

@@ -12,6 +12,9 @@ public class Menu extends JFrame {
 
     private JLabel spaceLabel;
 
+    public Menu(){
+    }
+
     public Menu(int width, int height, String titleGame) {
 
         startBtn = new JButton("Start Game");
