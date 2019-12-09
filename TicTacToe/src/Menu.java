@@ -15,6 +15,12 @@ public class Menu extends JFrame {
     public Menu(){
     }
 
+    /**
+     * Initialize all the attributes and setting all the functionalities.
+     * @param width the dimension of the width.
+     * @param height the dimension of the height.
+     * @param titleGame the title of the game.
+     */
     public Menu(int width, int height, String titleGame) {
 
         startBtn = new JButton("Start Game");
@@ -81,10 +87,10 @@ public class Menu extends JFrame {
     }
 
     /**
-     *
-     * @param width
-     * @param height
-     * @return
+     * Setting the menu panel.
+     * @param width the dimension of the width.
+     * @param height the dimension of the height.
+     * @return the menu panel.
      */
     private JPanel menuPanel(int width, int height) {
         JPanel menuPanel = new JPanel();
@@ -126,6 +132,12 @@ public class Menu extends JFrame {
         return menuPanel;
     }
 
+    /**
+     * Setting the mode level panel.
+     * @param width the dimension of the width.
+     * @param height the dimension of the height.
+     * @return the level panel.
+     */
     private JPanel levelPanel(int width, int height) {
         JPanel levelPanel = new JPanel();
         levelPanel.setLayout(new GridBagLayout());
@@ -151,6 +163,14 @@ public class Menu extends JFrame {
         return levelPanel;
     }
 
+    /**
+     * Setting the configuration for gridBagConstraints.
+     * @param weightx weight x for gridBagConstraints.
+     * @param weighty weight y for gridBagConstraints.
+     * @param gridx grid x for gridBagConstraints.
+     * @param gridy grid y for gridBagConstraints.
+     * @param gridBagConstraints gridBagConstraints input.
+     */
     private void gridBagConstraints(double weightx, double weighty, int gridx, int gridy, GridBagConstraints gridBagConstraints) {
         gridBagConstraints.weightx = weightx;
         gridBagConstraints.weighty = weighty;

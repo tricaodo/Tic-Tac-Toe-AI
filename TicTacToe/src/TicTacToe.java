@@ -40,12 +40,18 @@ public class TicTacToe extends JFrame {
 
     }
 
+    /**
+     * Handling the event of save button.
+     */
     private void saveButtonEvent(){
         saveBtn.addActionListener(e -> {
 
         });
     }
 
+    /**
+     * Handling the event of back button.
+     */
     private void backButtonEvent(){
         backBtn.addActionListener(e -> {
             this.setVisible(false);
@@ -53,6 +59,9 @@ public class TicTacToe extends JFrame {
         });
     }
 
+    /**
+     * Setting the configuration for this frame.
+     */
     private void configureFrame(){
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,6 +70,9 @@ public class TicTacToe extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Initialize the board and setting the panel for the board.
+     */
     private void init(){
         cells = new JButton[3][3];
         Dimension dimension = new Dimension(DIMENSION, DIMENSION);
@@ -82,6 +94,11 @@ public class TicTacToe extends JFrame {
         add(panel, BorderLayout.SOUTH);
     }
 
+    /**
+     * Checking and setting the UI board
+     * @param row nth row
+     * @param col nth col
+     */
     public void mouseClickedEvent(int row, int col) {
         if (!isGameOver) {
             // Check game status
