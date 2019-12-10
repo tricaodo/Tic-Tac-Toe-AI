@@ -15,23 +15,19 @@ public class Menu extends JFrame {
 
     /**
      * Initialize all the attributes and setting all the functionalities.
-     *
-     *
      */
     public Menu(Game game) {
         this.game = game;
+
         WIDTH = 400;
         HEIGHT = 400;
-
         startBtn = new JButton("Start Game");
         loadBtn = new JButton("Load Game");
         exitBtn = new JButton("Exit Game");
 
         spaceLabel = new JLabel("");
 
-        JPanel menuPanel = menuPanel();
-
-        add(menuPanel);
+        menuPanel();
 
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,10 +56,8 @@ public class Menu extends JFrame {
 
     /**
      * Setting the menu panel.
-     *
-     * @return the menu panel.
      */
-    private JPanel menuPanel() {
+    private void menuPanel() {
         JPanel menuPanel = new JPanel();
         menuPanel.setLayout(new GridBagLayout());
         menuPanel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -100,7 +94,7 @@ public class Menu extends JFrame {
         gridBagConstraints(1, 0.1, 0, 5, gridConstraints);
         menuPanel.add(exitBtn, gridConstraints);
 
-        return menuPanel;
+        add(menuPanel);
     }
 
 
@@ -121,4 +115,5 @@ public class Menu extends JFrame {
         gridBagConstraints.fill = GridBagConstraints.NONE;
         gridBagConstraints.anchor = GridBagConstraints.CENTER;
     }
+
 }

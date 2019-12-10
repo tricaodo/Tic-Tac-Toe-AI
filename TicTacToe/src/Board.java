@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Board extends JFrame {
 
-    private ArrayList<String> gameHistory;
+    private ArrayList<String> savedGameList;
     private JButton[][] cells;
     private JButton saveBtn;
     private JButton backBtn;
@@ -19,7 +19,7 @@ public class Board extends JFrame {
         // create the panel for the board.
         init();
 
-        this.gameHistory = new ArrayList<>();
+        this.savedGameList = new ArrayList<>();
         this.game = game;
 
         backBtn = new JButton("Back");
@@ -54,8 +54,8 @@ public class Board extends JFrame {
                     }
                 }
             }
-            gameHistory.add(steps.toString());
-            game.setGameHistory(gameHistory);
+            savedGameList.add(steps.toString());
+            game.setNumberOfSavedGames(savedGameList.size());
             this.setVisible(false);
             game.setState("menu");
         });
@@ -64,7 +64,7 @@ public class Board extends JFrame {
     public void loadGame(){
         int i = 0;
         int j = 0;
-        String str = gameHistory.get(0);
+        String str = savedGameList.get(0);
         for(int count = 0; count < str.length(); count++){
             if(j % 3 == 0 && j != 0){
                 j = 0;
