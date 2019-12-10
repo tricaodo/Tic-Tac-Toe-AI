@@ -1,8 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Board extends JFrame {
 
+    private ArrayList<String> gameHistory;
     private JButton[][] cells;
     private JButton saveBtn;
     private JButton backBtn;
@@ -14,13 +16,17 @@ public class Board extends JFrame {
     private final Game game;
 
     public Board(Game game) {
+        // create the panel for the board.
+        init();
+
+        this.gameHistory = new ArrayList<>();
         this.game = game;
 
         backBtn = new JButton("Back");
         saveBtn = new JButton("Save");
 
-        backButtonEvent();
-        saveButtonEvent();
+        handleBackEvent();
+        handleSaveEvent();
 
         add(saveBtn, BorderLayout.NORTH);
         add(backBtn, BorderLayout.CENTER);
@@ -29,26 +35,58 @@ public class Board extends JFrame {
         token = "X";
 
         DIMENSION = 140;
-        // create the panel for the board.
-        init();
 
     }
 
     /**
      * Handling the event of save button.
      */
-    private void saveButtonEvent(){
+    private void handleSaveEvent(){
         saveBtn.addActionListener(e -> {
+            StringBuilder steps = new StringBuilder();
+            for(int i = 0; i < cells.length; i++){
+                for(int j = 0; j < cells[i].length; j++){
+                    JButton button = cells[i][j];
+                    if(button.getText().equals("")){
+                        steps.append(".");
+                    }else {
+                        steps.append(button.getText());
+                    }
+                }
+            }
+            gameHistory.add(steps.toString());
+            game.setGameHistory(gameHistory);
+            this.setVisible(false);
+            game.setState("menu");
         });
+    }
+
+    public void loadGame(){
+        int i = 0;
+        int j = 0;
+        String str = gameHistory.get(0);
+        for(int count = 0; count < str.length(); count++){
+            if(j % 3 == 0 && j != 0){
+                j = 0;
+                i++;
+            }
+            if(str.charAt(count) == 'X'){
+                cells[i][j].setText("X");
+            }else if(str.charAt(count) == 'O'){
+                cells[i][j].setText("O");
+            }else{
+                cells[i][j].setText("");
+            }
+            j++;
+        }
     }
 
     /**
      * Handling the event of back button.
      */
-    private void backButtonEvent(){
+    private void handleBackEvent(){
         backBtn.addActionListener(e -> {
             this.setVisible(false);
-//            menu.setVisible(true);
         });
     }
 

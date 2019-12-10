@@ -47,7 +47,8 @@ public class Menu extends JFrame {
 
         // load event
         loadBtn.addActionListener(e -> {
-
+            this.setVisible(false);
+            game.setState("load");
         });
 
         // exit event

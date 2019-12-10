@@ -1,10 +1,13 @@
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Game {
     private final Menu menu;
     private final Mode mode;
     private final Board board;
     private String state = "menu";
+    private List<String> gameHistory = new ArrayList<>();
 
     public Game() {
         menu = new Menu(this);
@@ -38,6 +41,14 @@ public class Game {
             configureFrame(board);
         }else if(state.equals("hard")){
 
+        }else if(state.equals("load")){
+            board.loadGame();
+            configureFrame(board);
         }
+    }
+
+    public void setGameHistory(List<String> gameHistory){
+        this.gameHistory = gameHistory;
+        System.out.println(this.gameHistory);
     }
 }
