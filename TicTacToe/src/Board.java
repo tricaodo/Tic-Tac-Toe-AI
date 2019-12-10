@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class TicTacToe extends JFrame {
+public class Board extends JFrame {
 
     private JButton[][] cells;
     private JButton saveBtn;
@@ -11,12 +11,10 @@ public class TicTacToe extends JFrame {
     private String token;
 
     private final int DIMENSION;
-    private final int WIDTH;
-    private final int HEIGHT;
-    private final Menu menu;
+    private final Game game;
 
-    public TicTacToe() {
-        menu = new Menu();
+    public Board(Game game) {
+        this.game = game;
 
         backBtn = new JButton("Back");
         saveBtn = new JButton("Save");
@@ -31,12 +29,8 @@ public class TicTacToe extends JFrame {
         token = "X";
 
         DIMENSION = 140;
-        WIDTH = 440;
-        HEIGHT = 480;
-
         // create the panel for the board.
         init();
-        configureFrame();
 
     }
 
@@ -45,7 +39,6 @@ public class TicTacToe extends JFrame {
      */
     private void saveButtonEvent(){
         saveBtn.addActionListener(e -> {
-
         });
     }
 
@@ -55,19 +48,8 @@ public class TicTacToe extends JFrame {
     private void backButtonEvent(){
         backBtn.addActionListener(e -> {
             this.setVisible(false);
-            menu.setVisible(true);
+//            menu.setVisible(true);
         });
-    }
-
-    /**
-     * Setting the configuration for this frame.
-     */
-    private void configureFrame(){
-        setSize(WIDTH, HEIGHT);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        pack();
-        setVisible(true);
     }
 
     /**
