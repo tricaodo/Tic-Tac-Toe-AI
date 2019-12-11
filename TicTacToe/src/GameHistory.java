@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.ArrayList;
 import java.util.List;
 
 public class GameHistory extends JFrame implements ItemListener {
@@ -11,8 +10,6 @@ public class GameHistory extends JFrame implements ItemListener {
     private Game game;
     private int gameIndex = -1;
 
-
-    private List<String> savedGameList;
     private JComboBox gameHistoryCombo;
 
     public GameHistory(Game game){
@@ -21,7 +18,6 @@ public class GameHistory extends JFrame implements ItemListener {
         loadBtn = new JButton("Load Game");
         backBtn = new JButton("Back    ");
 
-        savedGameList = new ArrayList<>();
         gameHistoryCombo = new JComboBox();
 
         comboBoxPanel();
@@ -49,7 +45,6 @@ public class GameHistory extends JFrame implements ItemListener {
 
     public void setSavedGameList(List<String> savedGameList){
         gameHistoryCombo.removeAllItems();
-        this.savedGameList = savedGameList;
         for(int i = 0; i < savedGameList.size(); i++){
             gameHistoryCombo.addItem("Game " + (i + 1));
         }

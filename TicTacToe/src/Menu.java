@@ -38,13 +38,13 @@ public class Menu extends JFrame {
         // start event
         startBtn.addActionListener(e -> {
             this.setVisible(false);
-            game.setState("mode");
+            this.game.setState("mode");
         });
 
         // load event
         loadBtn.addActionListener(e -> {
             this.setVisible(false);
-            game.setState("history");
+            this.game.setState("history");
         });
 
         // exit event
