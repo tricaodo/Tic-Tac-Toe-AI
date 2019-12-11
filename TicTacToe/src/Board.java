@@ -17,6 +17,7 @@ public class Board extends JFrame {
 
     public Board(Game game) {
         // create the panel for the board.
+        cells = new JButton[3][3];
         init();
 
         this.savedGameList = new ArrayList<>();
@@ -55,16 +56,17 @@ public class Board extends JFrame {
                 }
             }
             savedGameList.add(steps.toString());
-            game.setNumberOfSavedGames(savedGameList.size());
+            game.setSavedGameList(savedGameList);
             this.setVisible(false);
             game.setState("menu");
         });
     }
 
-    public void loadGame(){
+    public void loadGame(int index){
         int i = 0;
         int j = 0;
-        String str = savedGameList.get(0);
+        String str = savedGameList.get(index);
+        System.out.println("str");
         for(int count = 0; count < str.length(); count++){
             if(j % 3 == 0 && j != 0){
                 j = 0;
@@ -72,13 +74,17 @@ public class Board extends JFrame {
             }
             if(str.charAt(count) == 'X'){
                 cells[i][j].setText("X");
+                cells[i][j].setEnabled(false);
             }else if(str.charAt(count) == 'O'){
                 cells[i][j].setText("O");
+                cells[i][j].setEnabled(false);
             }else{
                 cells[i][j].setText("");
+                cells[i][j].setEnabled(true);
             }
             j++;
         }
+        isGameOver = isWon();
     }
 
     /**
@@ -86,6 +92,7 @@ public class Board extends JFrame {
      */
     private void handleBackEvent(){
         backBtn.addActionListener(e -> {
+            game.setState("menu");
             this.setVisible(false);
         });
     }
@@ -94,7 +101,7 @@ public class Board extends JFrame {
      * Initialize the board and setting the panel for the board.
      */
     private void init(){
-        cells = new JButton[3][3];
+
         Dimension dimension = new Dimension(DIMENSION, DIMENSION);
         JPanel panel = new JPanel(new GridLayout(3, 3, 0, 0));
         panel.setPreferredSize(new Dimension(440, 440));
@@ -111,7 +118,20 @@ public class Board extends JFrame {
                 });
             }
         }
+        isGameOver = isWon();
         add(panel, BorderLayout.SOUTH);
+    }
+
+    public void reset(){
+        token = "X";
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                cells[row][col].setText("");
+                cells[row][col].setEnabled(true);
+                cells[row][col].updateUI();
+            }
+        }
+        isGameOver = isWon();
     }
 
     /**
@@ -202,6 +222,7 @@ public class Board extends JFrame {
             int col = (int) (Math.random() * 3);
             if (cells[row][col].getText().equals("")) {
                 cells[row][col].setText(token);
+                cells[row][col].setEnabled(false);
                 token = (token.equals("X")) ? "O" : "X";
                 break;
             }

@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Game {
     private final Menu menu;
@@ -6,13 +8,16 @@ public class Game {
     private final Board board;
     private final GameHistory gameHistory;
     private String state = "menu";
-    private int numberOfSavedGames = 0;
+    private List<String> savedGameList;
+    private int gameIndex = -1;
+
 
     public Game() {
         menu = new Menu(this);
         mode = new Mode(this);
         board = new Board(this);
         gameHistory = new GameHistory(this);
+        savedGameList = new ArrayList<>();
         changeScene();
     }
 
@@ -39,16 +44,23 @@ public class Game {
         }else if(state.equals("menu")){
             configureFrame(menu);
         }else if(state.equals("easy")){
+            board.reset();
             configureFrame(board);
         }else if(state.equals("hard")){
-
-        }else if(state.equals("load")){
-            gameHistory.setNumberOfSavedGames(numberOfSavedGames);
+            board.reset();
+        }else if(state.equals("history")){
+            gameHistory.setSavedGameList(savedGameList);
             configureFrame(gameHistory);
+        } else if(state.equals("load") && gameIndex != -1){
+            board.loadGame(gameIndex);
+            configureFrame(board);
         }
     }
+    public void setSavedGameList(List<String> savedGameList){
+        this.savedGameList = savedGameList;
+    }
 
-    public void setNumberOfSavedGames(int numberOfSavedGames){
-        this.numberOfSavedGames = numberOfSavedGames;
+    public void setLoadGame(int index){
+        this.gameIndex = index;
     }
 }
