@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.Collections;
 import java.util.List;
 
 public class GameHistory extends JFrame implements ItemListener {
@@ -12,6 +13,10 @@ public class GameHistory extends JFrame implements ItemListener {
 
     private JComboBox gameHistoryCombo;
 
+    /**
+     * Constructor for GameHistory
+     * @param game Game Object
+     */
     public GameHistory(Game game){
 
         this.game = game;
@@ -28,6 +33,9 @@ public class GameHistory extends JFrame implements ItemListener {
         gameHistoryCombo.addItemListener(this);
     }
 
+    /**
+     * Handling the back button.
+     */
     private void backButtonEvent(){
         backBtn.addActionListener(e -> {
             this.setVisible(false);
@@ -35,6 +43,9 @@ public class GameHistory extends JFrame implements ItemListener {
         });
     }
 
+    /**
+     * Handling the load button.
+     */
     private void loadButtonEvent(){
         loadBtn.addActionListener(e -> {
             game.setLoadGame(gameIndex - 1);
@@ -43,13 +54,29 @@ public class GameHistory extends JFrame implements ItemListener {
         });
     }
 
+    /**
+     * Setting the list of game history, and sort them based on the name.
+     * @param savedGameList List of game history.
+     */
     public void setSavedGameList(List<String> savedGameList){
         gameHistoryCombo.removeAllItems();
+        Collections.sort(savedGameList, (o1, o2) -> {
+            if(o1.compareTo(o2) > 0){
+                return -1;
+            }else if(o1.compareTo(o2) < 0){
+                return 1;
+            }
+            return 0;
+        });
         for(int i = 0; i < savedGameList.size(); i++){
             gameHistoryCombo.addItem("Game " + (i + 1));
         }
     }
 
+    /**
+     * Handling the combobox.
+     * @param e ItemEvent
+     */
     @Override
     public void itemStateChanged(ItemEvent e) {
         String str = (String) e.getItem();
@@ -74,6 +101,9 @@ public class GameHistory extends JFrame implements ItemListener {
         gridBagConstraints.anchor = GridBagConstraints.CENTER;
     }
 
+    /**
+     * Configure the game history panel.
+     */
     private void comboBoxPanel() {
         JPanel comboBoxPanel = new JPanel();
         comboBoxPanel.setLayout(new GridBagLayout());

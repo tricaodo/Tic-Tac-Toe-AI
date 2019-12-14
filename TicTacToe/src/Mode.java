@@ -1,13 +1,18 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Mode extends JFrame{
+public class Mode extends JFrame {
     private JButton easyBtn;
     private JButton hardBtn;
     private JButton backBtn;
 
     private final Game game;
 
+    /**
+     * Initialize all the components.
+     *
+     * @param game Game object
+     */
     public Mode(Game game) {
         this.game = game;
         easyBtn = new JButton("Easy");
@@ -17,6 +22,7 @@ public class Mode extends JFrame{
         levelPanel();
         handleBackEvent();
         handleEasyEvent();
+        handleHardEvent();
     }
 
     /**
@@ -51,19 +57,36 @@ public class Mode extends JFrame{
         add(levelPanel);
     }
 
-    private void handleEasyEvent(){
+    /**
+     * Handling the easy button.
+     */
+    private void handleEasyEvent() {
         easyBtn.addActionListener(e -> {
             this.setVisible(false);
             game.setState("easy");
         });
     }
 
-    private void handleBackEvent(){
+    /**
+     * Handling the hard button.
+     */
+    private void handleHardEvent() {
+        hardBtn.addActionListener(e -> {
+            this.setVisible(false);
+            game.setState("hard");
+        });
+    }
+
+    /**
+     * Handling the back button.
+     */
+    private void handleBackEvent() {
         backBtn.addActionListener(e -> {
             this.setVisible(false);
             game.setState("menu");
         });
     }
+
 
     /**
      * Setting the configuration for gridBagConstraints.

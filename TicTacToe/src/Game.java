@@ -2,20 +2,22 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Game {
+public class Game implements IGame {
     private final Menu menu;
     private final Mode mode;
-    private final Board board;
+    private final GameBoard gameBoard;
     private final GameHistory gameHistory;
     private String state = "menu";
     private List<String> savedGameList;
     private int gameIndex = -1;
 
-
+    /**
+     * Initialize all the classes.
+     */
     public Game() {
         menu = new Menu(this);
         mode = new Mode(this);
-        board = new Board(this);
+        gameBoard = new GameBoard(this);
         gameHistory = new GameHistory(this);
         savedGameList = new ArrayList<>();
         changeScene();
@@ -33,34 +35,55 @@ public class Game {
         frame.setVisible(true);
     }
 
-    public void setState(String str){
+    /**
+     * Setting the state in order to display the scene.
+     *
+     * @param str string state.
+     */
+    public void setState(String str) {
         state = str;
         changeScene();
     }
 
-    public void changeScene(){
-        if(state.equals("mode")){
+    /**
+     * Changing the scene based on the user's selection.
+     */
+    public void changeScene() {
+        if (state.equals("mode")) {
             configureFrame(mode);
-        }else if(state.equals("menu")){
+        } else if (state.equals("menu")) {
             configureFrame(menu);
-        }else if(state.equals("easy")){
-            board.reset();
-            configureFrame(board);
-        }else if(state.equals("hard")){
-            board.reset();
-        }else if(state.equals("history")){
+        } else if (state.equals("easy")) {
+            gameBoard.reset();
+            gameBoard.setHardMode(false);
+            configureFrame(gameBoard.getFrame());
+        } else if (state.equals("hard")) {
+            gameBoard.reset();
+            gameBoard.setHardMode(true);
+            configureFrame(gameBoard.getFrame());
+        } else if (state.equals("history")) {
             gameHistory.setSavedGameList(savedGameList);
             configureFrame(gameHistory);
-        } else if(state.equals("load") && gameIndex != -1){
-            board.loadGame(gameIndex);
-            configureFrame(board);
+        } else if (state.equals("load") && gameIndex != -1) {
+            gameBoard.loadGame(gameIndex);
         }
     }
-    public void setSavedGameList(List<String> savedGameList){
+
+    /**
+     * Setting the history game list.
+     *
+     * @param savedGameList list of game history.
+     */
+    public void setSavedGameList(List<String> savedGameList) {
         this.savedGameList = savedGameList;
     }
 
-    public void setLoadGame(int index){
+    /**
+     * Setting the game that the user wants to load.
+     *
+     * @param index the index of the game in the list.
+     */
+    public void setLoadGame(int index) {
         this.gameIndex = index;
     }
 }
