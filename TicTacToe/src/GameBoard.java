@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class GameBoard extends JFrame {
     private ArrayList<String> savedGameList;
     private JButton[] boardButtons = new JButton[9];
-    private JButton resetButton = new JButton("Reset");
+    private JButton resetBtn = new JButton("Reset");
     private JButton saveBtn;
     private JButton backBtn;
     private boolean hardMode;
@@ -63,7 +63,7 @@ public class GameBoard extends JFrame {
 
         JPanel buttonPanel = new JPanel(new FlowLayout());
 
-        buttonPanel.add(resetButton);
+        buttonPanel.add(resetBtn);
         buttonPanel.add(saveBtn);
         buttonPanel.add(backBtn);
 
@@ -81,7 +81,7 @@ public class GameBoard extends JFrame {
             boardButtons[i].setFont(new Font("Tahoma", Font.BOLD, 75));
         }
 
-        resetButton.addActionListener(new buttonsActionExecute());
+        resetBtn.addActionListener(new buttonsActionExecute());
         handleSaveEvent();
         handleBackEvent();
     }
@@ -125,12 +125,12 @@ public class GameBoard extends JFrame {
 
                 //if AI has a legal move
                 if (computerMove != -1) {
-                    gameLogic.generateNewPiece(gameLogic.getOpponentHardAi(), computerMove);
-                    boardButtons[computerMove].setText(Character.toString(gameLogic.getOpponentHardAi()));
+                    gameLogic.generateNewPiece(gameLogic.getOpponent(), computerMove);
+                    boardButtons[computerMove].setText(Character.toString(gameLogic.getOpponent()));
                     boardButtons[computerMove].setForeground(Color.RED);
 
                     //if AI has won, end game
-                    if (gameLogic.isWinner(gameLogic.getOpponentHardAi())) {
+                    if (gameLogic.isWinner(gameLogic.getOpponent())) {
                         gameOver();
                         //if game over, stop loop
                         break;
@@ -150,7 +150,7 @@ public class GameBoard extends JFrame {
      * @param action ActionEvent of Mouse click.
      */
     private void reset(ActionEvent action) {
-        if (action.getSource() == resetButton) {
+        if (action.getSource() == resetBtn) {
             for (int i = 0; i < 9; i++) {
                 boardButtons[i].setText("");
                 boardButtons[i].setEnabled(true);
@@ -201,12 +201,12 @@ public class GameBoard extends JFrame {
 
                 //if AI has a legal move
                 if (computerMove != -1) {
-                    gameLogic.generateNewPiece(gameLogic.getOpponentHardAi(), computerMove);
-                    boardButtons[computerMove].setText(Character.toString(gameLogic.getOpponentHardAi()));
+                    gameLogic.generateNewPiece(gameLogic.getOpponent(), computerMove);
+                    boardButtons[computerMove].setText(Character.toString(gameLogic.getOpponent()));
                     boardButtons[computerMove].setForeground(Color.RED);
 
                     //if AI has won, end game
-                    if (gameLogic.isWinner(gameLogic.getOpponentHardAi())) {
+                    if (gameLogic.isWinner(gameLogic.getOpponent())) {
                         gameOver();
                         //if game over, stop loop
                         break;
@@ -231,7 +231,7 @@ public class GameBoard extends JFrame {
         if (gameLogic.isWinner(gameLogic.getHuman())) {
             JOptionPane.showMessageDialog(frame, "Congratulation! You Win!");
             frame.setTitle("Human Being Win ");
-        } else if (gameLogic.isWinner(gameLogic.getOpponentHardAi())) {
+        } else if (gameLogic.isWinner(gameLogic.getOpponent())) {
             frame.setTitle("AI Wins");
             JOptionPane.showMessageDialog(frame, "Bad luck. You Lose.");
 

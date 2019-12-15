@@ -5,17 +5,17 @@ public class GameLogic {
 
     //Character used for the player pieces (X/0)
     private char human;
-    private char opponentHardAi;
+    private char opponent;
 
     /**
      * Constructor for GameLogic.
      *
      * @param human          character for player.
-     * @param opponentHardAi character for computer.
+     * @param opponent character for computer.
      */
-    public GameLogic(char human, char opponentHardAi) {
+    public GameLogic(char human, char opponent) {
         this.human = human;
-        this.opponentHardAi = opponentHardAi;
+        this.opponent = opponent;
     }
 
     /**
@@ -41,8 +41,8 @@ public class GameLogic {
      *
      * @return Computer's character.
      */
-    public char getOpponentHardAi() {
-        return opponentHardAi;
+    public char getOpponent() {
+        return opponent;
     }
 
     /**
@@ -80,7 +80,7 @@ public class GameLogic {
      * @return whether it is a valid position.
      */
     public boolean isPositionAvailable(int position) {
-        return this.board[position] != this.human && this.board[position] != this.opponentHardAi;
+        return this.board[position] != this.human && this.board[position] != this.opponent;
     }
 
     /**
@@ -114,7 +114,7 @@ public class GameLogic {
      * @return the new copy of the GameLogic.
      */
     public GameLogic copy() {
-        GameLogic newGameLogic = new GameLogic(this.human, this.opponentHardAi);
+        GameLogic newGameLogic = new GameLogic(this.human, this.opponent);
         for (int i = 0; i < this.board.length; i++) {
             newGameLogic.board[i] = this.board[i];
         }

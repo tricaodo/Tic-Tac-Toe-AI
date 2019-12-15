@@ -19,7 +19,7 @@ public class AI {
         }
 
         //return the index of first winning position for AI
-        int hardAiIndex = findWinPosition(gameLogicCopy, gameLogic.getOpponentHardAi());
+        int hardAiIndex = findWinPosition(gameLogicCopy, gameLogic.getOpponent());
         //since I have keyword protect in super class, thus I can call findWinPosition()
         if (hardAiIndex != -1) {
             return hardAiIndex;
@@ -32,7 +32,7 @@ public class AI {
         }
 
         //return index of fork for AI
-        hardAiIndex = findFork(gameLogicCopy, gameLogic.getOpponentHardAi(), 2);
+        hardAiIndex = findFork(gameLogicCopy, gameLogic.getOpponent(), 2);
         if (hardAiIndex != -1) {
             return hardAiIndex;
         }
@@ -41,7 +41,7 @@ public class AI {
         if (humanIndex != -1) {
             //playing two in a row to counter fork
             if (gameLogicCopy.getBoard()[4] == gameLogicCopy.getHuman()) {
-                return findFork(gameLogicCopy, gameLogic.getOpponentHardAi(), 1);
+                return findFork(gameLogicCopy, gameLogic.getOpponent(), 1);
                 //play into fork position of human
             } else {
                 return humanIndex;

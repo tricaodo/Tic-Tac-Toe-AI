@@ -28,7 +28,7 @@ public class Game implements IGame {
      */
     public void configureFrame(JFrame frame) {
         frame.setTitle("Tic-Tac-Toe Game");
-        frame.setSize(400, 400);
+        frame.setSize(350, 350);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.pack();

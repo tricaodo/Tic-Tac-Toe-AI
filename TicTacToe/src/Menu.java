@@ -6,11 +6,6 @@ public class Menu extends JFrame {
     private JButton loadBtn;
     private JButton exitBtn;
 
-    private final int WIDTH;
-    private final int HEIGHT;
-
-    private JLabel spaceLabel;
-
     private final Game game;
 
     /**
@@ -19,21 +14,11 @@ public class Menu extends JFrame {
     public Menu(Game game) {
         this.game = game;
 
-        WIDTH = 400;
-        HEIGHT = 400;
         startBtn = new JButton("Start Game");
         loadBtn = new JButton("Load Game");
         exitBtn = new JButton("Exit Game");
 
-        spaceLabel = new JLabel("");
-
         menuPanel();
-
-        setSize(WIDTH, HEIGHT);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        pack();
-        setVisible(true);
 
         // start event
         startBtn.addActionListener(e -> {
@@ -60,7 +45,7 @@ public class Menu extends JFrame {
     private void menuPanel() {
         JPanel menuPanel = new JPanel();
         menuPanel.setLayout(new GridBagLayout());
-        menuPanel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        menuPanel.setPreferredSize(new Dimension(350, 350));
         GridBagConstraints gridConstraints = new GridBagConstraints();
 
 
@@ -79,6 +64,7 @@ public class Menu extends JFrame {
         menuPanel.add(tictactoeTitle, gridConstraints);
 
         // space label
+        JLabel spaceLabel = new JLabel("");
         gridBagConstraints(1, 0.5, 0, 2, gridConstraints);
         menuPanel.add(spaceLabel, gridConstraints);
 
@@ -96,7 +82,6 @@ public class Menu extends JFrame {
 
         add(menuPanel);
     }
-
 
     /**
      * Setting the configuration for gridBagConstraints.
