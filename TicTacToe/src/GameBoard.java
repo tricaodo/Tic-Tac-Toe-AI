@@ -105,7 +105,6 @@ public class GameBoard extends JFrame {
      */
     private void hardMode(ActionEvent action) {
         int computerMove;
-        System.out.println();
         //Display the human's piece on the buttons
         for (int i = 0; i < 9; i++) {
             if (action.getSource() == boardButtons[i] && gameLogic.isPositionAvailable(i)) {
@@ -298,7 +297,6 @@ public class GameBoard extends JFrame {
     public void loadGame(int index) {
         assert (isValid(index)) : "There is no game to load.";
         String str = savedGameList.get(index);
-        System.out.println("str");
         for (int i = 0; i < str.length(); i++) {
             if (str.charAt(i) == 'X') {
                 boardButtons[i].setText("X");

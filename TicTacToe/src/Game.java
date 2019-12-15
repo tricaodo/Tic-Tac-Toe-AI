@@ -31,6 +31,7 @@ public class Game implements IGame {
         frame.setSize(350, 350);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
         frame.pack();
         frame.setVisible(true);
     }
