@@ -1,3 +1,6 @@
+/**
+ * This class sets the state of the game depending on the output by the user.
+ */
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +15,7 @@ public class Game implements IGame {
     private int gameIndex = -1;
 
     /**
-     * Initialize all the classes.
+     * Initializes all the classes.
      */
     public Game() {
         menu = new Menu(this);
@@ -25,10 +28,12 @@ public class Game implements IGame {
 
     /**
      * Setting the configuration for this frame.
+     * 
+     * @param frame, setting up the frame
      */
     public void configureFrame(JFrame frame) {
         frame.setTitle("Tic-Tac-Toe Game");
-        frame.setSize(350, 350);
+        frame.setSize(400, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);

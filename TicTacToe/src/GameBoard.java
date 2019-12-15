@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class GameBoard extends JFrame {
     private ArrayList<String> savedGameList;
     private JButton[] boardButtons = new JButton[9];
-    private JButton resetBtn = new JButton("Reset");
+    private JButton resetButton = new JButton("Reset");
     private JButton saveBtn;
     private JButton backBtn;
     private boolean hardMode;
@@ -56,14 +56,14 @@ public class GameBoard extends JFrame {
         JPanel gameBoard = new JPanel(new GridLayout(3, 3));
         frame.add(mainPanel);
 
-        gameBoard.setPreferredSize(new Dimension(320, 320));
+        gameBoard.setPreferredSize(new Dimension(340, 340));
 
 
         mainPanel.add(gameBoard, BorderLayout.NORTH);
 
         JPanel buttonPanel = new JPanel(new FlowLayout());
 
-        buttonPanel.add(resetBtn);
+        buttonPanel.add(resetButton);
         buttonPanel.add(saveBtn);
         buttonPanel.add(backBtn);
 
@@ -81,7 +81,7 @@ public class GameBoard extends JFrame {
             boardButtons[i].setFont(new Font("Tahoma", Font.BOLD, 75));
         }
 
-        resetBtn.addActionListener(new buttonsActionExecute());
+        resetButton.addActionListener(new buttonsActionExecute());
         handleSaveEvent();
         handleBackEvent();
     }
@@ -100,7 +100,8 @@ public class GameBoard extends JFrame {
     }
 
     /**
-     * Setting the hard mode game. The game automatically generates randomly the valid moves.
+     * A helper function setting the hard mode game. 
+     * The game automatically generates randomly the valid moves.
      * @param action ActionEvent of Mouse click.
      */
     private void hardMode(ActionEvent action) {
@@ -124,12 +125,12 @@ public class GameBoard extends JFrame {
 
                 //if AI has a legal move
                 if (computerMove != -1) {
-                    gameLogic.generateNewPiece(gameLogic.getOpponent(), computerMove);
-                    boardButtons[computerMove].setText(Character.toString(gameLogic.getOpponent()));
+                    gameLogic.generateNewPiece(gameLogic.getOpponentHardAi(), computerMove);
+                    boardButtons[computerMove].setText(Character.toString(gameLogic.getOpponentHardAi()));
                     boardButtons[computerMove].setForeground(Color.RED);
 
                     //if AI has won, end game
-                    if (gameLogic.isWinner(gameLogic.getOpponent())) {
+                    if (gameLogic.isWinner(gameLogic.getOpponentHardAi())) {
                         gameOver();
                         //if game over, stop loop
                         break;
@@ -147,9 +148,10 @@ public class GameBoard extends JFrame {
     /**
      * When the reset button is clicked, reset the board and the display.
      * @param action ActionEvent of Mouse click.
+     * @postconditon the board will be reseted
      */
     private void reset(ActionEvent action) {
-        if (action.getSource() == resetBtn) {
+        if (action.getSource() == resetButton) {
             for (int i = 0; i < 9; i++) {
                 boardButtons[i].setText("");
                 boardButtons[i].setEnabled(true);
@@ -161,7 +163,7 @@ public class GameBoard extends JFrame {
     }
 
     /**
-     * When the back button is clicked, reset the board and the display.
+     * When the back button is clicked, resets the board and then display.
      */
     public void reset() {
         for (int i = 0; i < 9; i++) {
@@ -200,12 +202,12 @@ public class GameBoard extends JFrame {
 
                 //if AI has a legal move
                 if (computerMove != -1) {
-                    gameLogic.generateNewPiece(gameLogic.getOpponent(), computerMove);
-                    boardButtons[computerMove].setText(Character.toString(gameLogic.getOpponent()));
+                    gameLogic.generateNewPiece(gameLogic.getOpponentHardAi(), computerMove);
+                    boardButtons[computerMove].setText(Character.toString(gameLogic.getOpponentHardAi()));
                     boardButtons[computerMove].setForeground(Color.RED);
 
                     //if AI has won, end game
-                    if (gameLogic.isWinner(gameLogic.getOpponent())) {
+                    if (gameLogic.isWinner(gameLogic.getOpponentHardAi())) {
                         gameOver();
                         //if game over, stop loop
                         break;
@@ -221,7 +223,7 @@ public class GameBoard extends JFrame {
     }
 
     /**
-     * When the game is over, display any winners in the title.
+     * When the game is over, display any winners in the title or displays if there was a draw.
      */
     private void gameOver() {
         for (int i = 0; i < 9; i++) {
@@ -230,7 +232,7 @@ public class GameBoard extends JFrame {
         if (gameLogic.isWinner(gameLogic.getHuman())) {
             JOptionPane.showMessageDialog(frame, "Congratulation! You Win!");
             frame.setTitle("Human Being Win ");
-        } else if (gameLogic.isWinner(gameLogic.getOpponent())) {
+        } else if (gameLogic.isWinner(gameLogic.getOpponentHardAi())) {
             frame.setTitle("AI Wins");
             JOptionPane.showMessageDialog(frame, "Bad luck. You Lose.");
 
@@ -241,7 +243,7 @@ public class GameBoard extends JFrame {
     }
 
     /**
-     * Handling the event of save button.
+     * A helper function handling the event of save button.
      */
     private void handleSaveEvent() {
         saveBtn.addActionListener(e -> {
@@ -261,7 +263,7 @@ public class GameBoard extends JFrame {
     }
 
     /**
-     * Handling the event of back button.
+     * A helper function handling the event of back button.
      */
     private void handleBackEvent() {
         for (int i = 0; i < 9; i++) {
@@ -292,7 +294,7 @@ public class GameBoard extends JFrame {
      * Loading the game based on the user's selection.
      *
      * @param index index of the game in the list.
-     * @precondition isValid(index)
+     * @precondition isValid(index). The index should be a valid number to load the game.
      */
     public void loadGame(int index) {
         assert (isValid(index)) : "There is no game to load.";

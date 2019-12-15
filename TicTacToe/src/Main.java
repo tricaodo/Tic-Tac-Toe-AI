@@ -1,3 +1,6 @@
+/**
+ * The main method is in this class.
+ */
 import javax.swing.*;
 
 public class Main {

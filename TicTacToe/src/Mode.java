@@ -1,3 +1,6 @@
+/**
+ * This class handles the playing of the game with easy and difficult mode
+ */
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,7 +12,7 @@ public class Mode extends JFrame {
     private final Game game;
 
     /**
-     * Initialize all the components.
+     * Initializes all the components.
      *
      * @param game Game object
      */
@@ -26,7 +29,7 @@ public class Mode extends JFrame {
     }
 
     /**
-     * Setting the mode level panel.
+     * A helper function setting the mode level panel.
      *
      * @return the level panel.
      */
@@ -36,7 +39,7 @@ public class Mode extends JFrame {
 
         JPanel levelPanel = new JPanel();
         levelPanel.setLayout(new GridBagLayout());
-        levelPanel.setPreferredSize(new Dimension(350, 350));
+        levelPanel.setPreferredSize(new Dimension(340, 340));
         GridBagConstraints gridConstraints = new GridBagConstraints();
 
         // space label
@@ -58,7 +61,7 @@ public class Mode extends JFrame {
     }
 
     /**
-     * Handling the easy button.
+     * A helper function handling the easy button.
      */
     private void handleEasyEvent() {
         easyBtn.addActionListener(e -> {
@@ -68,7 +71,7 @@ public class Mode extends JFrame {
     }
 
     /**
-     * Handling the hard button.
+     * A helper function handling the hard button.
      */
     private void handleHardEvent() {
         hardBtn.addActionListener(e -> {
@@ -78,7 +81,7 @@ public class Mode extends JFrame {
     }
 
     /**
-     * Handling the back button.
+     * A helper function handling the back button.
      */
     private void handleBackEvent() {
         backBtn.addActionListener(e -> {
@@ -89,7 +92,7 @@ public class Mode extends JFrame {
 
 
     /**
-     * Setting the configuration for gridBagConstraints.
+     * A helper function setting the configuration for gridBagConstraints.
      *
      * @param weightx            weight x for gridBagConstraints.
      * @param weighty            weight y for gridBagConstraints.

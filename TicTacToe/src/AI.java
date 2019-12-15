@@ -1,15 +1,23 @@
+/**
+ * This class is used for output the AI returns.
+ * This class is invoked when the user chooses the hard option to play with.
+ * @author 
+ *
+ */
 public class AI {
     /**
      * Will return the index of the best move to make.
      *
      * @param gameLogic gameLogic object
      * @return the best move.
+     * @postcondition Will return a move if the game isn't finished or the board isn't full.
      */
     public int getIndexOfBestMove(GameLogic gameLogic) {
         GameLogic gameLogicCopy = gameLogic.copy();
 
         //Take the middle first if no one taken
         if (gameLogicCopy.isPositionAvailable(4)) {
+        	
             return 4;
         } else if (gameLogicCopy.getBoard()[4] == gameLogic.getHuman()
                 && gameLogicCopy.isPositionAvailable(2))
@@ -19,7 +27,7 @@ public class AI {
         }
 
         //return the index of first winning position for AI
-        int hardAiIndex = findWinPosition(gameLogicCopy, gameLogic.getOpponent());
+        int hardAiIndex = findWinPosition(gameLogicCopy, gameLogic.getOpponentHardAi());
         //since I have keyword protect in super class, thus I can call findWinPosition()
         if (hardAiIndex != -1) {
             return hardAiIndex;
@@ -32,7 +40,7 @@ public class AI {
         }
 
         //return index of fork for AI
-        hardAiIndex = findFork(gameLogicCopy, gameLogic.getOpponent(), 2);
+        hardAiIndex = findFork(gameLogicCopy, gameLogic.getOpponentHardAi(), 2);
         if (hardAiIndex != -1) {
             return hardAiIndex;
         }
@@ -41,7 +49,7 @@ public class AI {
         if (humanIndex != -1) {
             //playing two in a row to counter fork
             if (gameLogicCopy.getBoard()[4] == gameLogicCopy.getHuman()) {
-                return findFork(gameLogicCopy, gameLogic.getOpponent(), 1);
+                return findFork(gameLogicCopy, gameLogic.getOpponentHardAi(), 1);
                 //play into fork position of human
             } else {
                 return humanIndex;
@@ -59,11 +67,12 @@ public class AI {
     }
 
     /**
-     * Finding the winning position for the AI (hard mode).
+     * A helper function to find the winning position for the AI (hard mode).
      *
      * @param gameLogic GameLogic object.
      * @param piece     the character of computer AI.
-     * @return the optimal move.
+     * @return the move
+     * @postconditon An optimal move will be returned
      */
     private int findWinPosition(GameLogic gameLogic, char piece) {
         GameLogic gameLogicCopy = gameLogic.copy();
@@ -84,7 +93,7 @@ public class AI {
     }
 
     /**
-     * Copy the new board and try to find index of optimal.
+     * A helper function to copy the new board and try to find index of optimal.
      *
      * @param gameLogic GameLogic object
      * @param piece     the character of computer AI.
@@ -124,6 +133,8 @@ public class AI {
      *
      * @param gameLogic GameLogic object.
      * @return random moves.
+     * 
+     * @postcondition will return a valid move until the game isn't finished
      */
     public int getRandomMove(GameLogic gameLogic) {
         while (true) {

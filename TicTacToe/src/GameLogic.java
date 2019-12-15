@@ -1,27 +1,33 @@
+/**
+ * This class handles the playing of the game.
+ *
+ *
+ */
 public class GameLogic {
     //The Tic Tac Toe board filled with the pieces
     private char[] board = {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
     //initialize a 9 empty char ' '
 
     //Character used for the player pieces (X/0)
-    private char human;
-    private char opponent;
+    private final char human;
+    private final char opponentHardAi;
 
     /**
      * Constructor for GameLogic.
      *
      * @param human          character for player.
-     * @param opponent character for computer.
+     * @param opponentHardAi character for computer.
      */
-    public GameLogic(char human, char opponent) {
+    public GameLogic(char human, char opponentHardAi) {
         this.human = human;
-        this.opponent = opponent;
+        this.opponentHardAi = opponentHardAi;
     }
 
     /**
      * Getting the board.
      *
      * @return board.
+     * @postcondition the board will be returned.
      */
     public char[] getBoard() {
         return board;
@@ -41,8 +47,8 @@ public class GameLogic {
      *
      * @return Computer's character.
      */
-    public char getOpponent() {
-        return opponent;
+    public char getOpponentHardAi() {
+        return opponentHardAi;
     }
 
     /**
@@ -80,7 +86,7 @@ public class GameLogic {
      * @return whether it is a valid position.
      */
     public boolean isPositionAvailable(int position) {
-        return this.board[position] != this.human && this.board[position] != this.opponent;
+        return this.board[position] != this.human && this.board[position] != this.opponentHardAi;
     }
 
     /**
@@ -114,7 +120,7 @@ public class GameLogic {
      * @return the new copy of the GameLogic.
      */
     public GameLogic copy() {
-        GameLogic newGameLogic = new GameLogic(this.human, this.opponent);
+        GameLogic newGameLogic = new GameLogic(this.human, this.opponentHardAi);
         for (int i = 0; i < this.board.length; i++) {
             newGameLogic.board[i] = this.board[i];
         }

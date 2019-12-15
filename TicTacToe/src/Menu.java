@@ -1,3 +1,7 @@
+/**
+ * This class handles the main menu that is displayed in the 
+ * beginning of the game.
+ */
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,7 +13,7 @@ public class Menu extends JFrame {
     private final Game game;
 
     /**
-     * Initialize all the attributes and setting all the functionalities.
+     * Initializes all the attributes and setting all the functionalities.
      */
     public Menu(Game game) {
         this.game = game;
@@ -40,12 +44,12 @@ public class Menu extends JFrame {
     }
 
     /**
-     * Setting the menu panel.
+     * A helper function setting the menu panel.
      */
     private void menuPanel() {
         JPanel menuPanel = new JPanel();
         menuPanel.setLayout(new GridBagLayout());
-        menuPanel.setPreferredSize(new Dimension(350, 350));
+        menuPanel.setPreferredSize(new Dimension(340,340));
         GridBagConstraints gridConstraints = new GridBagConstraints();
 
 
@@ -83,8 +87,9 @@ public class Menu extends JFrame {
         add(menuPanel);
     }
 
+
     /**
-     * Setting the configuration for gridBagConstraints.
+     * A helper function setting the configuration for gridBagConstraints.
      *
      * @param weightx            weight x for gridBagConstraints.
      * @param weighty            weight y for gridBagConstraints.

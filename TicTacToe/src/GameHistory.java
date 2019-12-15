@@ -1,3 +1,6 @@
+/**
+ * This class is functional for the history of the games played.
+ */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
@@ -14,7 +17,7 @@ public class GameHistory extends JFrame implements ItemListener {
     private JComboBox gameHistoryCombo;
 
     /**
-     * Constructor for GameHistory
+     * Constructor for GameHistory class
      * @param game Game Object
      */
     public GameHistory(Game game){
@@ -34,7 +37,7 @@ public class GameHistory extends JFrame implements ItemListener {
     }
 
     /**
-     * Handling the back button.
+     * A helper function handling the back button.
      */
     private void backButtonEvent(){
         backBtn.addActionListener(e -> {
@@ -44,7 +47,7 @@ public class GameHistory extends JFrame implements ItemListener {
     }
 
     /**
-     * Handling the load button.
+     *  A helper function handling the load button.
      */
     private void loadButtonEvent(){
         loadBtn.addActionListener(e -> {
@@ -107,7 +110,7 @@ public class GameHistory extends JFrame implements ItemListener {
     private void comboBoxPanel() {
         JPanel comboBoxPanel = new JPanel();
         comboBoxPanel.setLayout(new GridBagLayout());
-        comboBoxPanel.setPreferredSize(new Dimension(400, 400));
+        comboBoxPanel.setPreferredSize(new Dimension(340, 340));
         GridBagConstraints gridConstraints = new GridBagConstraints();
 
 
