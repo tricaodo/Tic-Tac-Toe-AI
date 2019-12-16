@@ -1,9 +1,9 @@
-/** 
- * An inteface for the Game class
- */
+
 import javax.swing.*;
 import java.util.List;
-
+/**
+ * An interface for the Game class
+ */
 public interface IGame {
 	/**
 	 *  Setting the configuration for the frame.

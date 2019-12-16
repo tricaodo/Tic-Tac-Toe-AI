@@ -1,6 +1,3 @@
-/**
- * This class is functional for the history of the games played.
- */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
@@ -8,6 +5,9 @@ import java.awt.event.ItemListener;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * This class is functional for the history of the games played.
+ */
 public class GameHistory extends JFrame implements ItemListener {
     private JButton loadBtn;
     private JButton backBtn;
@@ -19,9 +19,10 @@ public class GameHistory extends JFrame implements ItemListener {
     /**
      * Constructor for GameHistory class
      * @param game Game Object
+     * @precondition game is not null
      */
     public GameHistory(Game game){
-
+        assert game != null : "Violate precondition: game is not null";
         this.game = game;
         loadBtn = new JButton("Load Game");
         backBtn = new JButton("Back    ");
@@ -94,8 +95,18 @@ public class GameHistory extends JFrame implements ItemListener {
      * @param gridx              grid x for gridBagConstraints.
      * @param gridy              grid y for gridBagConstraints.
      * @param gridBagConstraints gridBagConstraints input.
+     * @precondition weightx >= 0
+     * @precondition weighty >= 0
+     * @precondition gridx >= 0
+     * @precondition gridy >= 0
+     * @precondition gridBagConstraints != null
      */
     private void gridBagConstraints(double weightx, double weighty, int gridx, int gridy, GridBagConstraints gridBagConstraints) {
+        assert weightx >= 0 : "Violate precondition : weigthx >= 0";
+        assert weighty >= 0 : "Violate precondition : weigthy >= 0";
+        assert gridx >= 0 : "Violate precondition : gridx >= 0";
+        assert gridy >= 0 : "Violate precondition : gridy >= 0";
+        assert gridBagConstraints != null  : "Violate precondition : gridBagConstraints != null";
         gridBagConstraints.weightx = weightx;
         gridBagConstraints.weighty = weighty;
         gridBagConstraints.gridx = gridx;

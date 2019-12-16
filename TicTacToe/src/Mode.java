@@ -1,9 +1,9 @@
-/**
- * This class handles the playing of the game with easy and difficult mode
- */
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This class handles the playing of the game with easy and difficult mode
+ */
 public class Mode extends JFrame {
     private JButton easyBtn;
     private JButton hardBtn;
@@ -15,8 +15,10 @@ public class Mode extends JFrame {
      * Initializes all the components.
      *
      * @param game Game object
+     * @precondition game != null
      */
     public Mode(Game game) {
+        assert game != null : "Violate the precondition: game can not be null.";
         this.game = game;
         easyBtn = new JButton("Easy");
         hardBtn = new JButton("Hard");

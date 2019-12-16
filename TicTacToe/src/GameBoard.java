@@ -4,6 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * A class named GameBoard is a GUI class that implement all events
+ */
 public class GameBoard extends JFrame {
     private ArrayList<String> savedGameList;
     private JButton[] boardButtons = new JButton[9];
@@ -21,8 +24,10 @@ public class GameBoard extends JFrame {
     /**
      * Passing the game object when initializing this class.
      * @param game Game class constructor.
+     * @precondition game can not be null
      */
     public GameBoard(Game game) {
+        assert game != null : "Violate the precondition: game can not be null.";
         this.savedGameList = new ArrayList<>();
         this.backBtn = new JButton("Back");
         this.saveBtn = new JButton("Save");

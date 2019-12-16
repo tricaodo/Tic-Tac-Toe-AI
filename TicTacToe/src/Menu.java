@@ -1,10 +1,9 @@
-/**
- * This class handles the main menu that is displayed in the 
- * beginning of the game.
- */
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * This class handles the main menu that is displayed in the
+ * beginning of the game.
+ */
 public class Menu extends JFrame {
     private JButton startBtn;
     private JButton loadBtn;
@@ -14,8 +13,10 @@ public class Menu extends JFrame {
 
     /**
      * Initializes all the attributes and setting all the functionalities.
+     * @precondition game != null
      */
     public Menu(Game game) {
+        assert game != null : "Violate the precondition: game can not be null.";
         this.game = game;
 
         startBtn = new JButton("Start Game");

@@ -17,10 +17,30 @@ public class GameLogic {
      *
      * @param human          character for player.
      * @param opponentHardAi character for computer.
+     * @precondition human == 'X' && opponentHardAi == 'O'
+     * @precondition human == 'O' && opponentHardAi == 'X'
      */
     public GameLogic(char human, char opponentHardAi) {
+        assert ensureHumanAndComputerChooseCorrectRole(human, opponentHardAi) :
+                "Violate precondition: human == 'X' && opponentHardAi == 'O' OR human == 'O' && opponentHardAi == 'X'";
         this.human = human;
         this.opponentHardAi = opponentHardAi;
+    }
+
+    /**
+     *
+     * @param human the human input the char
+     * @param opponentHardAi the computer input the char
+     * @return true or false
+     */
+    private boolean ensureHumanAndComputerChooseCorrectRole(char human, char opponentHardAi){
+        if ((human == 'X') && (opponentHardAi == 'O')) {
+            return true;
+        }
+        if ((human == 'O') && (opponentHardAi == 'X')) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -74,8 +94,12 @@ public class GameLogic {
      *
      * @param piece    the character.
      * @param position the position in the board.
+     * @precondition piece == 'X' || piece == 'O'
+     * @precondition position >= 0 && position < 9
      */
     public void generateNewPiece(char piece, int position) {
+        assert piece == 'X' || piece == 'O' : "Violate precondition: piece == 'X' || piece == 'O'";
+        assert position >= 0 && position < 9 : "Violate precondition: position >= 0 && position < 9";
         this.board[position] = piece;
     }
 
@@ -83,9 +107,11 @@ public class GameLogic {
      * True if the position on the board is available.
      *
      * @param position the position in the board.
+     * @precondition position >= 0 && position < 9
      * @return whether it is a valid position.
      */
     public boolean isPositionAvailable(int position) {
+        assert position >= 0 && position < 9 : "Violate precondition: position >= 0 && position < 9";
         return this.board[position] != this.human && this.board[position] != this.opponentHardAi;
     }
 
@@ -93,9 +119,11 @@ public class GameLogic {
      * True if piece is the winner of the game.
      *
      * @param piece the character.
+     * @precondition piece == 'X' || piece == 'O'
      * @return whether the game is over.
      */
     public boolean isWinner(char piece) {
+        assert piece == 'X' || piece == 'O' : "Violate precondition: piece == 'X' || piece == 'O'";
         for (int i = 0; i < 3; i++) {
             //Check for horizontal and vertical wins
             if (this.board[3 * i] == piece && this.board[3 * i + 1] == piece &&

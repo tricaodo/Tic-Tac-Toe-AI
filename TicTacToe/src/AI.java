@@ -10,9 +10,11 @@ public class AI {
      *
      * @param gameLogic gameLogic object
      * @return the best move.
+     * @precondition gameLogic is not null
      * @postcondition Will return a move if the game isn't finished or the board isn't full.
      */
     public int getIndexOfBestMove(GameLogic gameLogic) {
+        assert gameLogic != null : "Violate precondition: gameLogic is not null";
         GameLogic gameLogicCopy = gameLogic.copy();
 
         //Take the middle first if no one taken
@@ -72,9 +74,13 @@ public class AI {
      * @param gameLogic GameLogic object.
      * @param piece     the character of computer AI.
      * @return the move
+     * @precondition gameLogic is not null
+     * @precondition piece == 'X' || piece == 'O'
      * @postconditon An optimal move will be returned
      */
     private int findWinPosition(GameLogic gameLogic, char piece) {
+        assert gameLogic != null : "Violate precondition: gameLogic is not null";
+        assert piece == 'X' || piece == 'O' : "Violate precondition: piece can not be other character expect 'X' or 'O'";
         GameLogic gameLogicCopy = gameLogic.copy();
         GameLogic newGameLogicClone;
 
@@ -98,9 +104,15 @@ public class AI {
      * @param gameLogic GameLogic object
      * @param piece     the character of computer AI.
      * @param wins
+     * @precondtion gameLogic is not null
+     * @precondition piece == 'X' || piece == 'O'
+     * @precondition wins == 1 || wins == 2
      * @return position that leads to a particular number of possible.
      */
     private int findFork(GameLogic gameLogic, char piece, int wins) {
+        assert gameLogic != null : "Violate precondition: gameLogic is not null";
+        assert piece == 'X' || piece == 'O' : "Violate precondition: piece can not be other character expect 'X' or 'O'";
+        assert wins == '1' || wins == '2' : "Violate precondition: wins == 1 || wins == 2";
         GameLogic gameLogicCopy = gameLogic.copy();
         GameLogic newGameLogicCopy;
         GameLogic newGameLogicCopy2;
@@ -133,10 +145,11 @@ public class AI {
      *
      * @param gameLogic GameLogic object.
      * @return random moves.
-     * 
+     * @precondtion gameLogic is not null
      * @postcondition will return a valid move until the game isn't finished
      */
     public int getRandomMove(GameLogic gameLogic) {
+        assert gameLogic != null : "Violate precondition: gameLogic is not null";
         while (true) {
             int i = (int) (Math.random() * 9);
             if (gameLogic.isPositionAvailable(i)) {

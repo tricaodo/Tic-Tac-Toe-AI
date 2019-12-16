@@ -1,10 +1,10 @@
-/**
- * This class sets the state of the game depending on the output by the user.
- */
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class sets the state of the game depending on the output by the user.
+ */
 public class Game implements IGame {
     private final Menu menu;
     private final Mode mode;
