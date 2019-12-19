@@ -10,7 +10,7 @@ Tic-Tac-Toe game was built in Java. This is a group project for CS-151.
  - Save Game.
 
 ### What I have learned:
- - UML Diagram.
+ - UML Diagram (Class, Reponsibility, Sequence, State).
  - Minimax Algorithm.
  - Assertion.
  - Design JavaDoc.
